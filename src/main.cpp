@@ -1,4 +1,13 @@
-extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Query(const SKSE::QueryInterface* a_skse, SKSE::PluginInfo* a_info)
+extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
+	SKSE::PluginVersionData v{};
+	v.pluginVersion = Version::MAJOR;
+	v.PluginName("SSEShaderTools"sv);
+	v.AuthorName("aers"sv);
+	v.CompatibleVersions({ SKSE::RUNTIME_1_6_318 });
+	return v;
+}();
+
+extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
 #ifndef NDEBUG
 	auto sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
@@ -25,29 +34,7 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Query(const SKSE::QueryInterface* a
 	spdlog::set_default_logger(std::move(log));
 	spdlog::set_pattern("%g(%#): [%^%l%$] %v"s);
 
-	logger::info(FMT_STRING("{} v{}"), Version::PROJECT, Version::NAME);
-
-	a_info->infoVersion = SKSE::PluginInfo::kVersion;
-	a_info->name = Version::PROJECT.data();
-	a_info->version = Version::MAJOR;
-
-	if (a_skse->IsEditor()) {
-		logger::critical("Loaded in editor, marking as incompatible"sv);
-		return false;
-	}
-
-	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_5_39) {
-		logger::critical(FMT_STRING("Unsupported runtime version {}"), ver.string());
-		return false;
-	}
-
-	return true;
-}
-
-extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
-{
-	logger::info("loaded");
+	logger::info(FMT_STRING("{} v{} loaded"), Version::PROJECT, Version::NAME);
 
 	SKSE::Init(a_skse);
 

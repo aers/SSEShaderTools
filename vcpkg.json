@@ -1,13 +1,12 @@
 {
-  "name": "exampleproject",
+  "name": "sseshadertools",
   "version-string": "1.0.0",
-  "description": "An example project built using CommonLibSSE",
-  "homepage": "https://github.com/Ryan-rsm-McKenzie/ExamplePlugin-CommonLibSSE",
+  "description": "Plugin for SSE Parallax Shader Fix.",
+  "homepage": "https://github.com/aers/SSEShaderTools",
   "license": "MIT",
   "dependencies": [
-    "boost-atomic",
     "boost-stl-interfaces",
-    "span-lite",
+	"rsm-binary-io",
     "spdlog"
   ]
 }
