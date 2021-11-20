@@ -1,4 +1,4 @@
-This is a basic plugin template for use with CommonLibSSE
+Plugin for SSE Parallax Shader Fix.
 
 ## Requirements
 * [CMake](https://cmake.org/)
@@ -16,8 +16,8 @@ This is a basic plugin template for use with CommonLibSSE
 
 ## Building
 ```
-git clone https://github.com/Ryan-rsm-McKenzie/ExamplePlugin-CommonLibSSE
-cd ExamplePlugin-CommonLibSSE
+git clone https://github.com/aers/SSEShaderTools
+cd SSEShaderTools
 git submodule update --init --recursive
 cmake -B build -S .
 ```
