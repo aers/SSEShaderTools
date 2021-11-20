@@ -76,18 +76,27 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG OFF)
 
 set(Boost_USE_STATIC_LIBS ON)
 
+add_compile_definitions(
+	SKSE_SUPPORT_XBYAK
+)
 
 # ---- Dependencies ----
 
 add_subdirectory("extern/CommonLibSSE" CommonLibSSE)
 
 find_package(spdlog REQUIRED CONFIG)
+find_package(xbyak REQUIRED CONFIG)
 
 # ---- Add source files ----
 
 set(SOURCES
 	src/main.cpp
 	src/PCH.h
+	src/BSShader.h
+	src/BSShaderHooks.cpp
+	src/BSShaderHooks.h
+	src/ShaderCompiler.cpp
+	src/ShaderCompiler.h
 )
 
 source_group(
@@ -132,8 +141,10 @@ target_include_directories(
 target_link_libraries(
 	${PROJECT_NAME}
 	PRIVATE
+		d3dcompiler.lib
 		CommonLibSSE::CommonLibSSE
 		spdlog::spdlog
+		xbyak::xbyak
 )
 
 if (MSVC)

@@ -1,3 +1,5 @@
+#include "BSShaderHooks.h"
+
 extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v{};
 	v.pluginVersion = Version::MAJOR;
@@ -28,7 +30,7 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	log->set_level(spdlog::level::trace);
 #else
 	log->set_level(spdlog::level::info);
-	log->flush_on(spdlog::level::warn);
+	log->flush_on(spdlog::level::info);
 #endif
 
 	spdlog::set_default_logger(std::move(log));
@@ -36,7 +38,10 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	logger::info(FMT_STRING("{} v{} loaded"), Version::PROJECT, Version::NAME);
 
-	SKSE::Init(a_skse);
+    SKSE::Init(a_skse);
+	SKSE::AllocTrampoline(1 << 6);
+
+	BSShaderHooks::Install();
 
 	return true;
 }
