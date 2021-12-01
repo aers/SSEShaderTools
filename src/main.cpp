@@ -5,7 +5,8 @@ extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
 	v.pluginVersion = Version::MAJOR;
 	v.PluginName("SSEShaderTools"sv);
 	v.AuthorName("aers"sv);
-	v.CompatibleVersions({ SKSE::RUNTIME_1_6_318 });
+	v.CompatibleVersions({ SKSE::RUNTIME_LATEST });
+	v.UsesAddressLibrary(true);
 	return v;
 }();
 

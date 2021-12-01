@@ -4,7 +4,7 @@
 namespace BSShaderHooks
 {
 	typedef void (*LoadShaders_t)(REX::BSShader* shader, std::uintptr_t stream);
-	REL::Relocation<LoadShaders_t*> LoadShaders{ REL::Offset(0x14478C0) };
+	REL::Relocation<LoadShaders_t*> LoadShaders{ REL::ID(108326) }; 
 	LoadShaders_t oLoadShaders;
 
     void hk_LoadShaders(REX::BSShader* bsShader, std::uintptr_t stream)
