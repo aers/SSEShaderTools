@@ -1,15 +1,15 @@
-#include "d3dcompiler.h"
 #include "d3d11.h"
+#include "d3dcompiler.h"
 
 namespace ShaderCompiler
 {
-	REL::Relocation<ID3D11Device**> g_ID3D11Device{ REL::Offset(0x30C0C10) };
+	REL::Relocation<ID3D11Device**> g_ID3D11Device{ REL::ID(411348) };
 
 	ID3D11PixelShader* CompileAndRegisterPixelShader(const std::wstring a_filePath)
 	{
 		D3D_SHADER_MACRO macros[3] = {};
 
-        macros[0].Name = "WINPC";
+		macros[0].Name = "WINPC";
 		macros[0].Definition = "";
 		macros[1].Name = "DX11";
 		macros[1].Definition = "";
