@@ -3,7 +3,7 @@
 
 namespace ShaderCompiler
 {
-	REL::Relocation<ID3D11Device**> g_ID3D11Device{ REL::ID(411348) };  //0x30C0C10) };
+	REL::Relocation<ID3D11Device**> g_ID3D11Device{ REL::ID(411348) };
 
 	ID3D11PixelShader* CompileAndRegisterPixelShader(const std::wstring a_filePath)
 	{
