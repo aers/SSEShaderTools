@@ -1,9 +1,9 @@
 #include "BSShaderHooks.h"
 
-extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
+extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v{};
 	v.pluginVersion = Version::MAJOR;
-	v.PluginName("SSEShaderTools"sv);
+	v.PluginName(Version::NAME);
 	v.AuthorName("aers"sv);
 	v.CompatibleVersions({ SKSE::RUNTIME_LATEST });
 	v.UsesAddressLibrary(true);
